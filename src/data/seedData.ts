@@ -153,7 +153,7 @@ export const SEED_EVENTS: CollegeEvent[] = [
     registeredUserIds: ['user_aarav', 'user_priya', 'user_rohan'],
     createdBy: 'admin_sys',
     createdAt: '2026-10-15T08:00:00Z',
-    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop&q=80'
+    image: '/images/campus_event_tech.jpg'
   },
   {
     id: 'event-2',
@@ -169,7 +169,7 @@ export const SEED_EVENTS: CollegeEvent[] = [
     registeredUserIds: ['user_aarav', 'user_priya'],
     createdBy: 'admin_sys',
     createdAt: '2026-10-20T10:00:00Z',
-    image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=80'
+    image: '/images/campus_event_workshop.jpg'
   },
   {
     id: 'event-3',
@@ -185,7 +185,7 @@ export const SEED_EVENTS: CollegeEvent[] = [
     registeredUserIds: ['user_ananya', 'user_rohan'],
     createdBy: 'admin_sys',
     createdAt: '2026-10-21T12:00:00Z',
-    image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&auto=format&fit=crop&q=80'
+    image: '/images/campus_event_cultural.jpg'
   },
   {
     id: 'event-4',
@@ -201,7 +201,7 @@ export const SEED_EVENTS: CollegeEvent[] = [
     registeredUserIds: ['user_ananya'],
     createdBy: 'admin_sys',
     createdAt: '2026-10-23T15:00:00Z',
-    image: 'https://images.unsplash.com/photo-1517649763962-0c623266ddc0?w=800&auto=format&fit=crop&q=80'
+    image: '/images/campus_event_sports.jpg'
   }
 ];
 

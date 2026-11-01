@@ -83,7 +83,13 @@ export const EventsPage: React.FC = () => {
       venue: venue || 'Campus Auditorium',
       organizer: organizer || (userProfile?.displayName ? `${userProfile.displayName} (Club Coordinator)` : 'Student Council'),
       capacity: parseInt(capacity) || 150,
-      image: image || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop&q=80'
+      image: image || (
+        category === 'Tech' ? '/images/campus_event_tech.jpg' :
+        category === 'Workshop' ? '/images/campus_event_workshop.jpg' :
+        category === 'Cultural' ? '/images/campus_event_cultural.jpg' :
+        category === 'Sports' ? '/images/campus_event_sports.jpg' :
+        '/images/campus_event_tech.jpg'
+      )
     });
 
     setTitle('');
@@ -187,6 +193,9 @@ export const EventsPage: React.FC = () => {
                     <img
                       src={event.image}
                       alt={event.title}
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = '/images/campus_event_tech.jpg';
+                      }}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute top-3 left-3 flex gap-2">
@@ -456,6 +465,9 @@ export const EventsPage: React.FC = () => {
                 <img
                   src={viewDetailsEvent.image}
                   alt={viewDetailsEvent.title}
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = '/images/campus_event_tech.jpg';
+                  }}
                   className="w-full h-full object-cover"
                 />
                 <button

@@ -128,7 +128,7 @@ export const CampusProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         postId: 'post-1',
         authorId: 'user_aarav',
         authorName: 'Aarav Sharma',
-        authorPhoto: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&auto=format&fit=crop&q=80',
+        authorPhoto: '/images/avatar_placeholder.png',
         content: 'Hey Priya! I can handle the backend integration with Node & PostgreSQL. Let’s connect on campus after 4 PM.',
         createdAt: '2026-10-30T13:00:00Z'
       },
