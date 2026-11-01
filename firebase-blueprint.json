@@ -1,0 +1,155 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Student or Admin user profile",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 256 },
+        "displayName": { "type": "string", "maxLength": 100 },
+        "photoURL": { "type": "string", "maxLength": 1024 },
+        "collegeName": { "type": "string", "maxLength": 150 },
+        "branch": { "type": "string", "maxLength": 100 },
+        "semester": { "type": "string", "maxLength": 50 },
+        "bio": { "type": "string", "maxLength": 500 },
+        "skills": { "type": "array" },
+        "role": { "type": "string", "enum": ["student", "admin"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "email", "displayName", "collegeName"]
+    },
+    "Admin": {
+      "title": "Admin",
+      "description": "Admin privileges marker",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "maxLength": 256 },
+        "role": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["email", "role"]
+    },
+    "Note": {
+      "title": "Note",
+      "description": "Academic study note uploaded by students",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 200 },
+        "subject": { "type": "string", "maxLength": 100 },
+        "branch": { "type": "string", "maxLength": 100 },
+        "semester": { "type": "string", "maxLength": 50 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "fileName": { "type": "string", "maxLength": 200 },
+        "fileData": { "type": "string" },
+        "fileSize": { "type": "string", "maxLength": 50 },
+        "uploaderId": { "type": "string", "maxLength": 128 },
+        "uploaderName": { "type": "string", "maxLength": 100 },
+        "uploaderEmail": { "type": "string", "maxLength": 256 },
+        "status": { "type": "string", "enum": ["approved", "pending", "rejected"] },
+        "downloadCount": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["title", "subject", "branch", "semester", "uploaderId", "uploaderName", "status"]
+    },
+    "Event": {
+      "title": "Event",
+      "description": "College event or workshop",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 200 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "category": { "type": "string", "maxLength": 100 },
+        "date": { "type": "string", "maxLength": 100 },
+        "time": { "type": "string", "maxLength": 100 },
+        "venue": { "type": "string", "maxLength": 200 },
+        "organizer": { "type": "string", "maxLength": 150 },
+        "capacity": { "type": "number" },
+        "registeredCount": { "type": "number" },
+        "registeredUserIds": { "type": "array" },
+        "createdBy": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["title", "description", "category", "date", "venue", "organizer"]
+    },
+    "Post": {
+      "title": "Post",
+      "description": "Student community discussion post",
+      "type": "object",
+      "properties": {
+        "authorId": { "type": "string", "maxLength": 128 },
+        "authorName": { "type": "string", "maxLength": 100 },
+        "authorEmail": { "type": "string", "maxLength": 256 },
+        "authorPhoto": { "type": "string", "maxLength": 1024 },
+        "authorBranch": { "type": "string", "maxLength": 100 },
+        "title": { "type": "string", "maxLength": 250 },
+        "content": { "type": "string", "maxLength": 3000 },
+        "category": { "type": "string", "maxLength": 100 },
+        "likes": { "type": "array" },
+        "commentsCount": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["authorId", "authorName", "title", "content", "category"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "Comment on a community post",
+      "type": "object",
+      "properties": {
+        "postId": { "type": "string", "maxLength": 128 },
+        "authorId": { "type": "string", "maxLength": 128 },
+        "authorName": { "type": "string", "maxLength": 100 },
+        "authorPhoto": { "type": "string", "maxLength": 1024 },
+        "content": { "type": "string", "maxLength": 1000 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["postId", "authorId", "authorName", "content"]
+    },
+    "Announcement": {
+      "title": "Announcement",
+      "description": "College and department notice",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 250 },
+        "content": { "type": "string", "maxLength": 3000 },
+        "category": { "type": "string", "maxLength": 100 },
+        "isUrgent": { "type": "boolean" },
+        "targetAudience": { "type": "string", "maxLength": 100 },
+        "publishedBy": { "type": "string", "maxLength": 150 },
+        "publishedById": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["title", "content", "category", "isUrgent", "publishedBy"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Student and user profiles"
+    },
+    "/admins/{userId}": {
+      "schema": { "$ref": "#/entities/Admin" },
+      "description": "Admin users index"
+    },
+    "/notes/{noteId}": {
+      "schema": { "$ref": "#/entities/Note" },
+      "description": "Uploaded academic notes and materials"
+    },
+    "/events/{eventId}": {
+      "schema": { "$ref": "#/entities/Event" },
+      "description": "College events and registrations"
+    },
+    "/posts/{postId}": {
+      "schema": { "$ref": "#/entities/Post" },
+      "description": "Community posts and discussions"
+    },
+    "/posts/{postId}/comments/{commentId}": {
+      "schema": { "$ref": "#/entities/Comment" },
+      "description": "Comments on community posts"
+    },
+    "/announcements/{announcementId}": {
+      "schema": { "$ref": "#/entities/Announcement" },
+      "description": "College announcements and urgent notices"
+    }
+  }
+}
